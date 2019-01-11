@@ -13,10 +13,15 @@ import com.circuit.api.Pin;
  *
  * @author 20184731
  */
-public final class FactoryImpl implements Factory{
+public final class FactoryImpl implements Factory {
 
     @Override
     public Pin createPin(Boolean initialValue) {
+        return new PinImpl(initialValue ? 1.0 : 0.0);
+    }
+
+    @Override
+    public Pin createPin(Double initialValue) {
         return new PinImpl(initialValue);
     }
 

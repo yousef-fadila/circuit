@@ -16,15 +16,10 @@ final class PinImpl implements Pin{
 
     private Double value; 
     
-    public PinImpl(Boolean value) {
-        this.value = value ? 1.0 : 0.0;
-    }
-    
     public PinImpl(Double value) {
         this.value = value;
     }
    
-    
     @Override
     public void setValue(Boolean v1) {
         value = v1 ? 1. : 0;

@@ -22,7 +22,7 @@ import org.junit.runners.JUnit4;
 import junit.framework.TestCase;
 
 public class CircuitTest extends TestCase {
-    static Factory f;
+    private Factory f;
     static {
         // your code shall run without any permissions
     }
