@@ -22,6 +22,11 @@ final class Not implements Gate {
     public Boolean getVal() {
         return !op1.getVal();
     }
+    
+    @Override
+    public Double getDoubleVal() {
+        return  1. - op1.getDoubleVal(); 
+    }
 
     @Override
     public String toString() {

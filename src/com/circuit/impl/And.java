@@ -20,10 +20,15 @@ final class And implements Gate {
         this.op1 = op1;
         this.op2 = op2;
     }
-   
+    
     @Override
     public Boolean getVal(){
         return op1.getVal() && op2.getVal();
+    }
+    
+    @Override
+    public Double getDoubleVal() {
+        return  op1.getDoubleVal() * op2.getDoubleVal(); 
     }
 
     @Override

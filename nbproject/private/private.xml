@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/api/Pin.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/impl/FactoryImpl.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/impl/Not.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/api/GenericGate.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/impl/And.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/api/Factory.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/test/CircuitTest.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/impl/Or.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/api/Gate.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/impl/PinImpl.java</file>
+            <file>file:/C:/Users/20184743/Desktop/Code/circuit/src/com/circuit/api/GenericFactory.java</file>
+        </group>
+    </open-files>
+</project-private>

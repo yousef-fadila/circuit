@@ -24,6 +24,11 @@ final class Or implements Gate {
     public Boolean getVal() {
         return op1.getVal() || op2.getVal();
     }
+    
+    @Override
+    public Double getDoubleVal() {
+        return 1. - (1. - op1.getDoubleVal()) * (1. - op2.getDoubleVal());         
+    }
 
     @Override
     public String toString() {

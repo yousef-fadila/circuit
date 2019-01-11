@@ -10,5 +10,10 @@ package com.circuit.api;
  * @author 20184731
  */
 public interface Gate {
+
     Boolean getVal();
+        
+    default Double getDoubleVal() {
+        throw new UnsupportedOperationException("getDoubleVal");
+    }
 }

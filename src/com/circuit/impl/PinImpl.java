@@ -14,17 +14,43 @@ import com.circuit.api.Pin;
  */
 final class PinImpl implements Pin{
 
-    public PinImpl(Boolean op) {
-        this.op = op;
+    private Double value; 
+    
+    public PinImpl(Boolean value) {
+        this.value = value ? 1.0 : 0.0;
     }
-    private Boolean op;
+    
+    public PinImpl(Double value) {
+        this.value = value;
+    }
+   
+    
     @Override
     public void setValue(Boolean v1) {
-        op = v1;
+        value = v1 ? 1. : 0;
+    }
+    
+    @Override
+    public void setValue(Double v1) {
+        value = v1;
     }
 
     @Override
     public Boolean getVal() {
-        return op;
+        if(!value.equals(1.0) && !value.equals(0.0)) {
+            throw new UnsupportedOperationException("You have double as input: " + value);
+        }
+        
+        return getDoubleVal() == 1.0;
+    }
+    
+    @Override
+    public Double getDoubleVal() {
+        
+        if (value < 0 || value > 1.0) {
+            throw new IllegalStateException("Pin value is out of range: " + value);
+        }
+        
+        return value;
     }
 }
