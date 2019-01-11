@@ -13,7 +13,7 @@ import com.circuit.api.Pin;
  *
  * @author 20184731
  */
-public class FactoryImpl implements Factory{
+public final class FactoryImpl implements Factory{
 
     @Override
     public Pin createPin(Boolean initialValue) {
@@ -34,5 +34,4 @@ public class FactoryImpl implements Factory{
     public Gate createNot(Gate op1) {
         return new Not(op1);
     }
-    
 }
