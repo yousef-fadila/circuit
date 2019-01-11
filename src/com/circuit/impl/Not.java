@@ -11,7 +11,7 @@ import com.circuit.api.Gate;
  *
  * @author 20184731
  */
-public class Not implements Gate {
+final class Not implements Gate {
     private Gate op1;
 
     public Not(Gate op1) {

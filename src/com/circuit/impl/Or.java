@@ -11,7 +11,7 @@ import com.circuit.api.Gate;
  *
  * @author 20184731
  */
-public class Or implements Gate {
+final class Or implements Gate {
 
     public Or(Gate op1, Gate op2) {
         this.op1 = op1;

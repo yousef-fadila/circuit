@@ -11,7 +11,7 @@ import com.circuit.api.Gate;
  *
  * @author 20184731
  */
-class And implements Gate {
+final class And implements Gate {
 
     private Gate op1;
     private Gate op2;

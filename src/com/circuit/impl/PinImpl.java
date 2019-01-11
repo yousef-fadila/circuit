@@ -12,7 +12,7 @@ import com.circuit.api.Pin;
  *
  * @author 20184731
  */
-public class PinImpl implements Pin{
+final class PinImpl implements Pin{
 
     public PinImpl(Boolean op) {
         this.op = op;
