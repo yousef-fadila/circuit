@@ -6,28 +6,35 @@
 package com.circuit.impl;
 
 import com.circuit.api.Gate;
+import com.circuit.api.TypedGate;
 
 /**
  *
  * @author 20184731
  */
-final class Or implements Gate {
+final class Or implements TypedGate<Double> {
 
-    public Or(Gate op1, Gate op2) {
+    private TypedGate<Double> op1;
+    private TypedGate<Double> op2;
+
+    Or(Gate op1, Gate op2) {
+        this.op1 = ((TypedGate<Double>) op1);
+        this.op2 = ((TypedGate<Double>) op2);
+    }
+
+    Or(TypedGate<Double> op1, TypedGate<Double> op2) {
         this.op1 = op1;
         this.op2 = op2;
     }
-    private Gate op1;
-    private Gate op2;
-    
+
     @Override
     public Boolean getVal() {
         return op1.getVal() || op2.getVal();
     }
     
     @Override
-    public Double getDoubleVal() {
-        return 1. - (1. - op1.getDoubleVal()) * (1. - op2.getDoubleVal());         
+    public Double getValue() {
+        return 1. - (1. - op1.getValue()) * (1. - op2.getValue());
     }
 
     @Override

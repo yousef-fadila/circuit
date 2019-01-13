@@ -6,15 +6,20 @@
 package com.circuit.impl;
 
 import com.circuit.api.Gate;
+import com.circuit.api.TypedGate;
 
 /**
  *
  * @author 20184731
  */
-final class Not implements Gate {
-    private Gate op1;
+final class Not implements TypedGate<Double> {
+    private TypedGate<Double> op1;
 
-    public Not(Gate op1) {
+    Not(Gate op1) {
+        this.op1 = (TypedGate<Double>) op1;
+    }
+
+    Not(TypedGate<Double> op1) {
         this.op1 = op1;
     }
 
@@ -24,8 +29,8 @@ final class Not implements Gate {
     }
     
     @Override
-    public Double getDoubleVal() {
-        return  1. - op1.getDoubleVal(); 
+    public Double getValue() {
+        return  1. - op1.getValue();
     }
 
     @Override

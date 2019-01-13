@@ -8,12 +8,6 @@ import com.circuit.api.Factory;
 import com.circuit.api.Gate;
 import com.circuit.api.Pin;
 import com.circuit.impl.FactoryImpl;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
-import org.junit.Test;
-import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 /**
  *
@@ -22,31 +16,47 @@ import org.junit.runners.JUnit4;
 import junit.framework.TestCase;
 
 public class CircuitTest extends TestCase {
-    private Factory f;
-    static {
-        // your code shall run without any permissions
+
+    /**
+     * Custom implementation of Gate, adding some methods to it
+     */
+    class WeirdGate implements Gate {
+
+        @Override
+        public Boolean getVal() {
+            return null;
+        }
+
+        public Double getDoubleVal(double val) {
+            return val * 2;
+        }
+
+        public Object getDoubleVal() {
+            return new Object();
+        }
+
+        public Object getValue() {
+            return new Object();
+        }
     }
+
+    private Factory factory;
     
     public CircuitTest(String testName) {
         super(testName);
     }
 
     protected void setUp() throws Exception {
-        f = new FactoryImpl();
+        factory = new FactoryImpl();
     }
 
     protected void tearDown() throws Exception {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     public void testX1andX2() {
-        Pin x1 = f.createPin(Boolean.FALSE);
-        Pin x2 = f.createPin(Boolean.FALSE);
-        Gate o1 = f.createAnd(x1, x2);
+        Pin x1 = factory.createPin(Boolean.FALSE);
+        Pin x2 = factory.createPin(Boolean.FALSE);
+        Gate o1 = factory.createAnd(x1, x2);
         assertFalse(o1.getVal());
         
         x1.setValue(Boolean.TRUE);
@@ -56,9 +66,6 @@ public class CircuitTest extends TestCase {
         x1.setValue(Boolean.TRUE);
         x2.setValue(Boolean.TRUE);
         assertTrue(o1.getVal());
-        //System.out.println(o1);
-                
-//        fail("testX1andX2");
     }
     
     /** 
@@ -67,25 +74,26 @@ public class CircuitTest extends TestCase {
      * it is true for input (false, false, true).
      */
     public void testX1andX2orX3() {
-	Pin x1 = f.createPin(Boolean.FALSE);
-        Pin x2 = f.createPin(Boolean.FALSE);
-        Pin x3 = f.createPin(Boolean.FALSE);
+	    Pin x1 = factory.createPin(Boolean.FALSE);
+        Pin x2 = factory.createPin(Boolean.FALSE);
+        Pin x3 = factory.createPin(Boolean.FALSE);
         
-        Gate o1 = f.createOr(f.createAnd(x1, x2),x3);
+        Gate o1 = factory.createOr(factory.createAnd(x1, x2),x3);
         assertFalse(o1.getVal());
         
         
         x3.setValue(Boolean.TRUE);
         assertTrue(o1.getVal());
     }
+
     /** 
      * Create a circuit to evaluate (x1 or not(x1)) and then
      * verify that its result is true for all values of x1.
      */
 
     public void testAlwaysTrue() {
-        Pin x1 = f.createPin(Boolean.FALSE);
-        Gate o1 = f.createOr(x1,f.createNot(x1));
+        Pin x1 = factory.createPin(Boolean.FALSE);
+        Gate o1 = factory.createOr(x1, factory.createNot(x1));
         assertTrue(o1.getVal());
         
        x1.setValue(Boolean.TRUE);

@@ -42,12 +42,12 @@ public class DoubleCircuitTest extends TestCase {
      * Feed the same circuit with x1=0.0, x2=2.0, make sure it throws an exception
      */
     public void testX1andX2orNotX1() {
-        Pin x1 = factory.createPin(false);
-        Pin x2 = factory.createPin(false);
+        TypedPin<Double> x1 = factory.createPin(false);
+        TypedPin<Double> x2 = factory.createPin(false);
         
         Gate and = factory.createAnd(x1, x2);
         Gate not = factory.createNot(x1);
-        Gate result = factory.createOr(and, not);
+        TypedGate<Double> result = factory.createOr(and, not);
         
         // Case 1
         x1.setValue(true);
@@ -61,19 +61,19 @@ public class DoubleCircuitTest extends TestCase {
         // Case 3
         x1.setValue(0.0);
         x2.setValue(1.0);
-        Assert.assertTrue(result.getDoubleVal().equals(1.0));
+        Assert.assertTrue(result.getValue().equals(1.0));
         
         // Case 4
         x1.setValue(0.5);
         x2.setValue(0.5);
-        Assert.assertTrue(result.getDoubleVal().equals(0.625));
+        Assert.assertTrue(result.getValue().equals(0.625));
         
         // Case 5
         x1.setValue(0.0);
         x2.setValue(2.0);
                 
         try {
-            result.getDoubleVal();
+            result.getValue();
             Assert.fail("Exception is expected.");
         } catch(IllegalStateException e) {
             // We are good
@@ -88,11 +88,12 @@ public class DoubleCircuitTest extends TestCase {
      * improper use of the circuit.
      */
     public void testImproperUseOfTheCircuit() {
-        Pin x1 = factory.createPin(0.5);
-        Gate and = factory.createAnd(x1, x1);
+        TypedPin<Double> x1 = factory.createPin(false);
+        x1.setValue(0.5);
+        TypedGate<Double> and = factory.createAnd(x1, x1);
         
         x1.setValue(0.3);
-        Assert.assertFalse(and.getDoubleVal().equals(0.5 * 0.3));
+        Assert.assertNotEquals(and.getValue(), 0.5 * 0.3, 0.0);
     }
 
     /** Write your own element type called "gte" that will have two inputs and one output.
@@ -108,26 +109,27 @@ public class DoubleCircuitTest extends TestCase {
      * Feed the same circuit with 0 and verify the result is 1
      */
     public void testGreaterThanElement() {
-        Pin x1 = factory.createPin(0.5);
-        Gate result = new Gte(factory.createAnd(x1, factory.createNot(x1)), x1);
+        TypedPin<Double> x1 = factory.createPin(false);
+        x1.setValue(0.5);
+        TypedGate<Double> result = new Gte(factory.createAnd(x1, factory.createNot(x1)), x1);
         
         // Case 1
-        Assert.assertTrue(result.getDoubleVal().equals(0.0));
+        Assert.assertEquals(0.0, result.getValue(), 0.0);
         
         // Case 2
         x1.setValue(1.0);
-        Assert.assertTrue(result.getDoubleVal().equals(0.0));
+        Assert.assertEquals(0.0, result.getValue(), 0.0);
         
         // Case 3
         x1.setValue(0.0);
-        Assert.assertTrue(result.getDoubleVal().equals(1.0));
+        Assert.assertEquals(1.0, result.getValue(), 0.0);
     }
     
-    class Gte implements Gate {
+    class Gte implements TypedGate<Double> {
 
-        private Gate op1, op2;
+        private TypedGate<Double> op1, op2;
         
-        public Gte(Gate op1, Gate op2) {
+        public Gte(TypedGate<Double> op1, TypedGate<Double> op2) {
             this.op1 = op1;
             this.op2 = op2;
         }
@@ -138,8 +140,8 @@ public class DoubleCircuitTest extends TestCase {
         }
 
         @Override
-        public Double getDoubleVal() {
-            return op1.getDoubleVal() >= op2.getDoubleVal() ? 1.0 : 0.0;
+        public Double getValue() {
+            return op1.getValue() >= op2.getValue() ? 1.0 : 0.0;
         }
     }
 }

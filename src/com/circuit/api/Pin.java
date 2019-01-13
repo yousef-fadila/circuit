@@ -9,10 +9,10 @@ package com.circuit.api;
  *
  * @author 20184731
  */
-public interface Pin extends Gate{
+public interface Pin extends Gate {
     void setValue(Boolean v1);
     
-    default void setValue(Double v1) {
-        throw new UnsupportedOperationException("getDoubleVal");
-    }
+//    default void setValue(Double v1) {
+//        throw new UnsupportedOperationException("getDoubleVal");
+//    }
 }

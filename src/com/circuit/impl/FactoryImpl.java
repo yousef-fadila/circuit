@@ -5,9 +5,7 @@
  */
 package com.circuit.impl;
 
-import com.circuit.api.Factory;
-import com.circuit.api.Gate;
-import com.circuit.api.Pin;
+import com.circuit.api.*;
 
 /**
  *
@@ -16,27 +14,22 @@ import com.circuit.api.Pin;
 public final class FactoryImpl implements Factory {
 
     @Override
-    public Pin createPin(Boolean initialValue) {
+    public TypedPin<Double> createPin(Boolean initialValue) {
         return new PinImpl(initialValue ? 1.0 : 0.0);
     }
 
     @Override
-    public Pin createPin(Double initialValue) {
-        return new PinImpl(initialValue);
-    }
-
-    @Override
-    public Gate createAnd(Gate op1, Gate op2) {
+    public TypedGate<Double> createAnd(Gate op1, Gate op2) {
          return new And(op1, op2);
     }
 
     @Override
-    public Gate createOr(Gate op1, Gate op2) {
+    public TypedGate<Double> createOr(Gate op1, Gate op2) {
         return new Or(op1, op2);
     }
 
     @Override
-    public Gate createNot(Gate op1) {
+    public TypedGate<Double> createNot(Gate op1) {
         return new Not(op1);
     }
 }

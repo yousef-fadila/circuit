@@ -6,29 +6,35 @@
 package com.circuit.impl;
 
 import com.circuit.api.Gate;
+import com.circuit.api.TypedGate;
 
 /**
  *
  * @author 20184731
  */
-final class And implements Gate {
+final class And implements TypedGate<Double> {
 
-    private Gate op1;
-    private Gate op2;
+    private TypedGate<Double> op1;
+    private TypedGate<Double> op2;
 
-    public And(Gate op1, Gate op2) {
+    And(Gate op1, Gate op2) {
+        this.op1 = ((TypedGate<Double>) op1);
+        this.op2 = ((TypedGate<Double>) op2);
+    }
+
+    And(TypedGate<Double> op1, TypedGate<Double> op2) {
         this.op1 = op1;
         this.op2 = op2;
     }
-    
+
     @Override
-    public Boolean getVal(){
+    public Boolean getVal() {
         return op1.getVal() && op2.getVal();
     }
     
     @Override
-    public Double getDoubleVal() {
-        return  op1.getDoubleVal() * op2.getDoubleVal(); 
+    public Double getValue() {
+        return  op1.getValue() * op2.getValue();
     }
 
     @Override

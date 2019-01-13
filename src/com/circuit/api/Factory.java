@@ -10,11 +10,8 @@ package com.circuit.api;
  * @author 20184731
  */
 public interface Factory {
-    Pin createPin(Boolean initialValue);
-    default Pin createPin(Double initialValue) {
-        throw new UnsupportedOperationException("createPin");
-    }
-    Gate createAnd(Gate op1, Gate op2);
-    Gate createOr(Gate op1, Gate op2);
-    Gate createNot(Gate op1);
+    TypedPin<Double> createPin(Boolean initialValue);
+    TypedGate<Double> createAnd(Gate op1, Gate op2);
+    TypedGate<Double> createOr(Gate op1, Gate op2);
+    TypedGate<Double> createNot(Gate op1);
 }
