@@ -10,8 +10,8 @@ package com.circuit.api;
  * @author 20184731
  */
 public interface Factory {
-    TypedPin<Double> createPin(Boolean initialValue);
-    TypedGate<Double> createAnd(Gate op1, Gate op2);
-    TypedGate<Double> createOr(Gate op1, Gate op2);
-    TypedGate<Double> createNot(Gate op1);
+    DoublePin createPin(Boolean initialValue);
+    DoubleGate createAnd(Gate op1, Gate op2);
+    DoubleGate createOr(Gate op1, Gate op2);
+    DoubleGate createNot(Gate op1);
 }

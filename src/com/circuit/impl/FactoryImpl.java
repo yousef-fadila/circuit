@@ -14,22 +14,22 @@ import com.circuit.api.*;
 public final class FactoryImpl implements Factory {
 
     @Override
-    public TypedPin<Double> createPin(Boolean initialValue) {
+    public DoublePin createPin(Boolean initialValue) {
         return new PinImpl(initialValue ? 1.0 : 0.0);
     }
 
     @Override
-    public TypedGate<Double> createAnd(Gate op1, Gate op2) {
+    public DoubleGate createAnd(Gate op1, Gate op2) {
          return new And(op1, op2);
     }
 
     @Override
-    public TypedGate<Double> createOr(Gate op1, Gate op2) {
+    public DoubleGate createOr(Gate op1, Gate op2) {
         return new Or(op1, op2);
     }
 
     @Override
-    public TypedGate<Double> createNot(Gate op1) {
+    public DoubleGate createNot(Gate op1) {
         return new Not(op1);
     }
 }

@@ -6,23 +6,23 @@
 package com.circuit.impl;
 
 import com.circuit.api.Gate;
-import com.circuit.api.TypedGate;
+import com.circuit.api.DoubleGate;
 
 /**
  *
  * @author 20184731
  */
-final class Or implements TypedGate<Double> {
+final class Or implements DoubleGate {
 
-    private TypedGate<Double> op1;
-    private TypedGate<Double> op2;
+    private DoubleGate op1;
+    private DoubleGate op2;
 
     Or(Gate op1, Gate op2) {
-        this.op1 = ((TypedGate<Double>) op1);
-        this.op2 = ((TypedGate<Double>) op2);
+        this.op1 = GateConverter.convert(op1);
+        this.op2 = GateConverter.convert(op2);
     }
 
-    Or(TypedGate<Double> op1, TypedGate<Double> op2) {
+    Or(DoubleGate op1, DoubleGate op2) {
         this.op1 = op1;
         this.op2 = op2;
     }
@@ -33,8 +33,8 @@ final class Or implements TypedGate<Double> {
     }
     
     @Override
-    public Double getValue() {
-        return 1. - (1. - op1.getValue()) * (1. - op2.getValue());
+    public Double getDoubleVal() {
+        return 1. - (1. - op1.getDoubleVal()) * (1. - op2.getDoubleVal());
     }
 
     @Override

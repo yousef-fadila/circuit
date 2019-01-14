@@ -5,14 +5,14 @@
  */
 package com.circuit.impl;
 
-import com.circuit.api.TypedPin;
+import com.circuit.api.DoublePin;
 
 
 /**
  *
  * @author 20184731
  */
-final class PinImpl implements TypedPin<Double> {
+final class PinImpl implements DoublePin {
 
     private Double value; 
     
@@ -36,11 +36,11 @@ final class PinImpl implements TypedPin<Double> {
             throw new UnsupportedOperationException("You have double as input: " + value);
         }
         
-        return getValue() == 1.0;
+        return getDoubleVal()== 1.0;
     }
     
     @Override
-    public Double getValue() {
+    public Double getDoubleVal() {
         
         if (value < 0 || value > 1.0) {
             throw new IllegalStateException("Pin value is out of range: " + value);
