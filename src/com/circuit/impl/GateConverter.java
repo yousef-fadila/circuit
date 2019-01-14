@@ -12,7 +12,7 @@ import com.circuit.api.DoubleGate;
  *
  * @author 20184743
  */
-class GateConverter {
+final class GateConverter {
     static DoubleGate convert(Gate gate) {
         if (gate instanceof DoubleGate) {
             return ((DoubleGate) gate);
